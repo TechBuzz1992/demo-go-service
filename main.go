@@ -25,7 +25,7 @@ func main() {
 	serveMux.Handle("/get-products", productsHandler)
 
 	s := &http.Server{
-		Addr:         ":9090",
+		Addr:         ":8080",
 		Handler:      serveMux,
 		IdleTimeout:  120 * time.Second,
 		ReadTimeout:  1 * time.Second,
@@ -35,6 +35,7 @@ func main() {
 	s.ListenAndServe()
 
 	go func() {
+		l.Println("Starting the server for demo-go-service ...")
 		err := s.ListenAndServe()
 		if err != nil {
 			l.Fatal(err)
